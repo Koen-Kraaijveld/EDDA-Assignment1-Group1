@@ -4,6 +4,7 @@ birthweight = data$birthweight
 # normality check
 qqnorm(birthweight)
 shapiro_pval = shapiro.test(birthweight)[[2]]
+hist(birthweight)
 cat(sprintf("Shapiro-Wilk test p-value: %f\n", shapiro_pval))
 # add hist, maybe boxplot but not necessary
 
@@ -25,3 +26,15 @@ cat(sprintf("Bounded 96%%-CI: [%f, %f]\n", ci[1], ci[2]))
 # minimal sample size
 min_n = ((t_alpha)^2 * s^2) / 50^2
 cat(sprintf("Minimum sample size for error length 100: %f\n", min_n))
+
+#bootstrap
+B=1000
+Tstar=numeric(B)
+for(i in 1:B) {
+  Xstar=sample(birthweight,replace=TRUE)
+  Tstar[i]=mean(Xstar)}
+Tstar25=quantile(Tstar,0.02)
+Tstar975=quantile(Tstar,0.98)
+sum(Tstar<Tstar25)
+T1 = mean(birthweight)
+c(2*T1-Tstar975,2*T1-Tstar25)
