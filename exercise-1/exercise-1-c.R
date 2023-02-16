@@ -23,5 +23,5 @@ for (i in 1:n_sims) {
 
 # Compute the proportion of times the null hypothesis is rejected for the t-test
 t_power = mean(t_powers)
-
+sign_result = binom.test(sum(x > 2800), length(x), p = 0.5, alternative = "greater")
 
