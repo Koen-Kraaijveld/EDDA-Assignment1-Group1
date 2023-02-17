@@ -1,9 +1,17 @@
+# Read data from file and extract birthweight column
 data = read.table("birthweight.txt", header=TRUE)
 birthweight = data$birthweight
-t.test(birthweight,mu=2800,alt="g")
-#we reject the null hypothesis, because the mean is greater than.
-#H1 is true, H0 is false.
-#explain why we chose median
 
-sum(birthweight>2800)
-binom.test(107,188,p=0.5)
+# Perform one-sided t-test to check if the mean birthweight is greater than 2800 grams 
+t.test(birthweight, mu=2800, alternative="greater")
+
+# We reject the null hypothesis that the mean birthweight is less than or equal to 2800 grams, and conclude that the mean birthweight is greater than 2800 grams. 
+# Our alternative hypothesis is true and the null hypothesis is false.
+
+# Explain why we chose the alternative hypothesis (greater) in the t-test, rather than the two-sided hypothesis.
+
+# Count the number of birthweights greater than 2800 grams 
+sum(birthweight > 2800)
+
+# Perform a one-sided sign test to verify the expert's claim 
+binom.test(107, 188, p=0.5) 
