@@ -1,5 +1,5 @@
 # Load the data from file
-diet <- read.table("diet.txt", header = TRUE)
+diet <- read.table("exercise-3/diet.txt", header = TRUE)
 
 # Create a new column for weight lost
 diet$weight.lost <- diet$preweight - diet$weight6weeks
@@ -13,3 +13,12 @@ anova(model)
 
 # Check the assumptions of the ANOVA
 plot(model)
+
+# Create a histogram of weight lost
+hist(diet$weight.lost, breaks = 10, xlab = "Weight Lost (kg)", ylab = "Frequency", main = "Histogram of Weight Lost")
+
+# Create a bar chart of the number of participants by diet type
+barplot(table(diet$diet), xlab = "Diet Type", ylab = "Number of Participants", main = "Number of Participants by Diet Type")
+
+# Create a scatterplot of preweight vs. weight6weeks
+#plot(diet$preweight, diet$weight6weeks, xlab = "Pre-weight (kg)", ylab = "Weight after 6 weeks (kg)", main = "Pre-weight vs. Weight after 6 weeks")
