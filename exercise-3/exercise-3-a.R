@@ -21,4 +21,10 @@ hist(diet$weight.lost, breaks = 10, xlab = "Weight Lost (kg)", ylab = "Frequency
 barplot(table(diet$diet), xlab = "Diet Type", ylab = "Number of Participants", main = "Number of Participants by Diet Type")
 
 # Create a scatterplot of preweight vs. weight6weeks
-#plot(diet$preweight, diet$weight6weeks, xlab = "Pre-weight (kg)", ylab = "Weight after 6 weeks (kg)", main = "Pre-weight vs. Weight after 6 weeks")
+plot(diet$preweight, diet$weight6weeks, xlab = "Pre-weight (kg)", ylab = "Weight after 6 weeks (kg)", main = "Pre-weight vs. Weight after 6 weeks")
+
+# Create a new variable for gender type
+diet$gender.type <- ifelse(diet$gender == 1, "Male", "Female")
+
+# Create a boxplot of weight lost by gender type
+boxplot(weight.lost ~ gender.type, data = diet, xlab = "Gender", ylab = "Weight Lost (kg)", main = "Weight Lost by Gender")
