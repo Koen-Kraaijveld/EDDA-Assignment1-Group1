@@ -6,6 +6,7 @@ dietdf = data.frame(weight.lost=as.vector(as.matrix(diet$weight.lost)),
                     diet=as.factor(diet$diet),
                     height=as.factor(diet$height))
 
-dietaov = lm(weight.lost ~ diet * height, data=dietdf)
+dietaov = lm(weight.lost ~ diet + height, data=dietdf)
 print(anova(dietaov))
 print(summary(dietaov))
+

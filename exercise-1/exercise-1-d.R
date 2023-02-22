@@ -10,5 +10,5 @@ error = z_alpha_half * sqrt((p_hat * (1 - p_hat)) / n)
 print(p_hat - error)
 print(p_hat + error)
 
-alpha = 1 - pnorm(z_alpha_half)
+alpha = 2 * (1 - pnorm(z_alpha_half))
 print(alpha)

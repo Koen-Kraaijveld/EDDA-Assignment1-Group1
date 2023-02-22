@@ -3,7 +3,7 @@ data = read.table("exercise-1/birthweight.txt", header=TRUE)
 birthweight = data$birthweight
 
 # Perform one-sided t-test to check if the mean birthweight is greater than 2800 grams 
-t.test(birthweight, mu=2800, alternative="greater")
+print(t.test(birthweight, mu=2800, alternative="greater"))
 
 # We reject the null hypothesis that the mean birthweight is less than or equal to 2800 grams, and conclude that the mean birthweight is greater than 2800 grams. 
 # Our alternative hypothesis is true and the null hypothesis is false.
