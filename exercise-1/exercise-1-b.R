@@ -1,5 +1,5 @@
 # Read data from file and extract birthweight column
-data = read.table("birthweight.txt", header=TRUE)
+data = read.table("exercise-1/birthweight.txt", header=TRUE)
 birthweight = data$birthweight
 
 # Perform one-sided t-test to check if the mean birthweight is greater than 2800 grams 
@@ -14,4 +14,4 @@ t.test(birthweight, mu=2800, alternative="greater")
 sum(birthweight > 2800)
 
 # Perform a one-sided sign test to verify the expert's claim 
-binom.test(107, 188, p=0.5) 
+print(binom.test(107, 188, p=0.5))

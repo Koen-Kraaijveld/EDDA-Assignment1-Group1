@@ -9,8 +9,8 @@ data = read.table("exercise-2/cholesterol.txt", header=TRUE)
 before = data$Before
 after = data$After8weeks
 
-ttest = t.test(before, after, paired=TRUE)
-print(test)
+ttest = t.test(before, after, paired=TRUE, alternative="two.sided")
+print(ttest)
 
 # fix sign test
 sign_test = binom.test(sum((after-before) > 0), length(before), p=0.5)

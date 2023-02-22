@@ -4,24 +4,17 @@ set.seed(1) # set fixed seed for reproducibility
 data = read.table("exercise-1/birthweight.txt", header=TRUE)
 birthweight = data$birthweight
 
-# Set the hypothesized true mean to be greater than 2800 grams
-true_mean = 2850
-
 # Simulate data sets under the alternative hypothesis
+n_sample = 50
 n_sims = 1000
 t_powers = numeric(n_sims)
 sign_powers = numeric(n_sims)
 for (i in 1:n_sims) {
-  # Simulate a sample of birthweights under the alternative hypothesis
-  sim_data = rnorm(length(birthweight), mean=true_mean, sd=sd(birthweight))
-  
   # Perform the t-test
-  t_result = t.test(birthweight, mu=2800, alternative="greater")
-  t_powers[i] = t_result$p.value <= 0.05
-  
+  x = sample(birthweight, n_sample)
+  t_powers[i] = t.test(x, mu=2800, alternative="greater")[[3]]
+  sign_powers[i] = binom.test(sum(x > 2800), n_sample, alternative="greater")[[3]]
 }
 
-# Compute the proportion of times the null hypothesis is rejected for the t-test
-t_power = mean(t_powers)
-sign_result = binom.test(sum(birthweight > 2800), length(birthweight), p = 0.5, alternative = "greater")
-print(sign_result)
+print(sum(t_powers < 0.05) / n_sims)
+print(sum(sign_powers < 0.05) / n_sims)
