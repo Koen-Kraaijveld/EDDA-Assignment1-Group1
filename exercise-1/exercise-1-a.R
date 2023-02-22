@@ -1,11 +1,21 @@
 # Read data from file and extract birthweight column
-data = read.table("birthweight.txt", header=TRUE)
+data = read.table("exercise-1/birthweight.txt", header=TRUE)
 birthweight = data$birthweight
+size = c(300, 300)
 
 # Check for normality and compute Shapiro-Wilk test p-value
-qqnorm(birthweight)
+png(file="exercise-1/graphs/exercise-1-a-hist-birthweight.png", width=size[1], height=size[2])
+hist(birthweight,
+     main="Histogram of the birthweight",
+     xlab="Weight (g)")
+dev.off()
+
+png(file="exercise-1/graphs/exercise-1-a-qqnorm-birthweight.png", width=size[1], height=size[2])
+qqnorm(birthweight,
+     main="Normal Q-Q Plot of the birthweight")
+dev.off()
+
 shapiro_pval = shapiro.test(birthweight)[[2]]
-hist(birthweight)
 cat(sprintf("Shapiro-Wilk test p-value: %f\n", shapiro_pval))
 
 # Compute a bounded 96%-CI for the mean
