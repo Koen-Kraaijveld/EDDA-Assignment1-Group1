@@ -1,40 +1,26 @@
-# N = c(0, 1)
-# P = c(0, 1)
-# K = c(0, 1)
+# Load MASS package
+library(MASS)
 
-# blocks = rep(1:4, each=4)
-# n = sample(rep(0:1, each=2))
-# k = sample(rep(0:1, each=2))
-# p = sample(rep(0:1, each=2))
+# Set seed for reproducibility
+set.seed(123)
 
-# nblock = 6
-# blocks = numeric(nblock * 4)
-# df = data.frame()
-# 
+# Create a vector representing the blocks
+blocks <- rep(1:6, each = 4)
 
-for (i in 1:nblock) {
-  block = rep(i, each=4)
-  n = sample(rep(0:1, each=2))
-  k = sample(rep(0:1, each=2))
-  p = sample(rep(0:1, each=2))
-  print(block)
-  print(n)
-  print(k)
-  print(p)
-}
+# Randomly assign nitrogen to two plots in each block
+nitrogen <- rep(c(1,1,0,0), 6)
+nitrogen <- sample(nitrogen)
 
-# print(df)
-# print(data.frame(block=blocks, 
-#                  n=as.factor(n), 
-#                  k=as.factor(k), 
-#                  p=as.factor(p)))
+# Randomly assign phosphate to two plots in each block
+phosphate <- rep(c(1,0,1,0), 6)
+phosphate <- sample(phosphate)
 
-# I=2; J=2; K=2; N=3
-# print(
-#   rbind(
-#     rep(1:(I), each=N*J),
-#     rep(1:(J), N*I),
-#     rep(1:(K), N*K),
-#     sample(1:(N*I*J*K))
-#   )
-#   )
+# Assign potassium to  two plots in each block
+potassium <- rep(c(0,1,1,0), 6)
+potassium <- sample(potassium)
+
+# Create a data frame to represent the randomization
+randomization <- data.frame(blocks, nitrogen, phosphate, potassium)
+
+# View the resulting randomization
+randomization

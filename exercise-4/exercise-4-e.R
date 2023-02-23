@@ -5,7 +5,5 @@ npkdf = data.frame(yield=as.vector(as.matrix(npk$yield)),
                    P=as.factor(npk$P))
 
 npklmer1 = lmer(yield ~ N+K+P+(1|block), REML=FALSE, data=npkdf)
-print(summary(npklmer1))
-
 npklmer2 = lmer(yield ~ K+P+(1|block), REML=FALSE, data=npkdf)
 print(anova(npklmer2, npklmer1))
