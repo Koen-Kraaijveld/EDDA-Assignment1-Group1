@@ -8,16 +8,43 @@ set.seed(0)
 blocks <- rep(1:6, each = 4)
 
 # Randomly assign nitrogen to two plots in each block
-nitrogen <- rep(c(1,1,0,0), 6)
+#nitrogen <- rep(c(1,1,0,0), 6)
 #nitrogen <- sample(nitrogen)
 
+nitrogen <- numeric(length = 24)
+for (i in 1:(length(nitrogen)/4)) {
+  sample_seq <- sample(c(0, 0, 0, 0), size = 4, replace = TRUE)
+  sample_seq[sample(sample(4, 2))] <- 1 # randomly set two elements to 1
+  nitrogen[(4*(i-1)+1):(4*i)] <- sample_seq
+  #print(nitrogen[(4*(i-1)+1):(4*i)])
+}
+
+
+
 # Randomly assign phosphate to two plots in each block
-phosphate <- rep(c(1,0,1,0), 6)
+#phosphate <- rep(c(1,0,1,0), 6)
 #phosphate <- sample(phosphate)
 
+phosphate <- numeric(length = 24)
+for (i in 1:(length(phosphate)/4)) {
+  sample_seq <- sample(c(0, 0, 0, 0), size = 4, replace = TRUE)
+  sample_seq[sample(sample(4, 2))] <- 1 # randomly set two elements to 1
+  phosphate[(4*(i-1)+1):(4*i)] <- sample_seq
+  #print(phosphate[(4*(i-1)+1):(4*i)])
+}
+
+
 # Assign potassium to  two plots in each block
-potassium <- rep(c(0,1,1,0), 6)
+#potassium <- rep(c(0,1,1,0), 6)
 #potassium <- sample(potassium)
+
+potassium <- numeric(length = 24)
+for (i in 1:(length(potassium)/4)) {
+  sample_seq <- sample(c(0, 0, 0, 0), size = 4, replace = TRUE)
+  sample_seq[sample(sample(4, 2))] <- 1 # randomly set two elements to 1
+  potassium[(4*(i-1)+1):(4*i)] <- sample_seq
+  #print(potassium[(4*(i-1)+1):(4*i)])
+}
 
 # Create a data frame to represent the randomization
 randomization <- data.frame(blocks, nitrogen, phosphate, potassium)
