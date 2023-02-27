@@ -10,9 +10,13 @@ n_sims = 1000
 t_powers = numeric(n_sims)
 sign_powers = numeric(n_sims)
 for (i in 1:n_sims) {
-  # Perform the t-test
+  # Sample randomly from birthweight
   x = sample(birthweight, n_sample)
+  
+  # Perform t-test
   t_powers[i] = t.test(x, mu=2800, alternative="greater")[[3]]
+  
+  # Perform sign test
   sign_powers[i] = binom.test(sum(x > 2800), n_sample, alternative="greater")[[3]]
 }
 

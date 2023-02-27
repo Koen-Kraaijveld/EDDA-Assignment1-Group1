@@ -1,3 +1,6 @@
-# how to propose tests for 1.c? (with code?)
+# 1.d) double alpha value?
+# 1.e) proportion tests?
 
-# how to do 1.d and 1.e?
+# 2.c) how to do?
+
+# 4.a) what are we supposed to do?
