@@ -20,13 +20,13 @@ print(shapiro_pval)
 
 # Compute a bounded 96%-CI for the mean
 alpha = 0.04
-mean = mean(birthweight)
+xbar = mean(birthweight)
 s = sd(birthweight)
 n = length(birthweight)
-t_alpha = qt(1 - (alpha/2), df=n-1)
-error = t_alpha * (s / sqrt(n))
-lower_bound = mean - error
-upper_bound = mean + error
+zalpha = qnorm(1 - (alpha/2))
+error = zalpha * (s / sqrt(n))
+lower_bound = xbar - error
+upper_bound = xbar + error
 ci = c(lower_bound, upper_bound)
 print(ci)
 

@@ -23,17 +23,23 @@ potassium <- rep(c(0,1,1,0), 6)
 randomization <- data.frame(blocks, nitrogen, phosphate, potassium)
 
 # View the resulting randomization
-randomization
+print(randomization)
 
 # Part B:
 
 # Average Yield
 avg_yield <- with(npk, tapply(yield, list(block, N), mean))
 
-# Create a bar plot to show the results
-barplot(avg_yield, beside = TRUE, legend = rownames(avg_yield),
-        xlab = "Block", ylab = "Average yield", main = "Effect of nitrogen on yield")
 
+par(mfrow=c(1,1))
+# Create a bar plot to show the results
+barplot(avg_yield, 
+        beside = TRUE, 
+        legend = paste("Block", rownames(avg_yield)),
+        xlab = "Nitrogen added", 
+        names=c("No", "Yes"),
+        xlim=c(0, 19),
+        ylab = "Yield (pounds)", main = "Effect of nitrogen on yield")
 
 # Part C:
 

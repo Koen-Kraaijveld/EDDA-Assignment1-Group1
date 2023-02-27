@@ -5,20 +5,20 @@ data = read.table("exercise-1/birthweight.txt", header=TRUE)
 birthweight = data$birthweight
 
 # Simulate data sets under the alternative hypothesis
-n_sample = 50
-n_sims = 1000
-t_powers = numeric(n_sims)
-sign_powers = numeric(n_sims)
+nsample = 50
+nsims = 1000
+tpow = numeric(nsims)
+signpow = numeric(nsims)
 for (i in 1:n_sims) {
   # Sample randomly from birthweight
-  x = sample(birthweight, n_sample)
+  x = sample(birthweight, nsample)
   
   # Perform t-test
-  t_powers[i] = t.test(x, mu=2800, alternative="greater")[[3]]
+  tpow[i] = t.test(x, mu=2800, alternative="greater")[[3]]
   
-  # Perform sign test
-  sign_powers[i] = binom.test(sum(x > 2800), n_sample, alternative="greater")[[3]]
+  # Perform Wilcoxon signed rank test
+  signpow[i] = wilcox.test(x, mu=2800, alt='greater')[[3]]
 }
 
-print(sum(t_powers < 0.05) / n_sims)
-print(sum(sign_powers < 0.05) / n_sims)
+print(sum(tpow < 0.05) / n_sims)
+print(sum(signpow < 0.05) / n_sims)
