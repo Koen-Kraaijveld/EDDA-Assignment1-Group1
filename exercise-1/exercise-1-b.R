@@ -13,3 +13,5 @@ print(t.test(birthweight, mu=2800, alternative="greater"))
 # Count the number of birthweights greater than 2800 grams 
 # Perform a one-sided sign test to verify the expert's claim 
 print(wilcox.test(birthweight, mu=2800, alt='greater'))
+
+print(binom.test(sum(birthweight > 2800), length(birthweight), p=0.5, alt="greater"))

@@ -23,15 +23,15 @@ alpha = 0.04
 xbar = mean(birthweight)
 s = sd(birthweight)
 n = length(birthweight)
-zalpha = qnorm(1 - (alpha/2))
-error = zalpha * (s / sqrt(n))
+talpha = qt(1 - (alpha/2), df=n-1)
+error = talpha * (s / sqrt(n))
 lower_bound = xbar - error
 upper_bound = xbar + error
 ci = c(lower_bound, upper_bound)
 print(ci)
 
 # Compute the minimum sample size for the error length to be 100
-min_n = ((t_alpha)^2 * s^2) / 50^2
+min_n = ((talpha)^2 * s^2) / (50^2)
 print(min_n)
 
 # Compute bootstrap 96%-CI for the mean and compare to the bounded CI

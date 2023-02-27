@@ -36,27 +36,3 @@ randomization <- data.frame(blocks, nitrogen, phosphate, potassium)
 
 # View the resulting randomization
 print(randomization)
-
-# Part B:
-
-# Calculate average yield
-avg_yield <- with(npk, tapply(yield, list(block, N), mean))
-
-
-par(mfrow=c(1,1))
-# Create a bar plot to show the results
-barplot(avg_yield, 
-        beside = TRUE, 
-        legend = paste("Block", rownames(avg_yield)),
-        xlab = "Nitrogen added", 
-        names=c("No", "Yes"),
-        xlim=c(0, 19),
-        ylab = "Yield (pounds)", main = "Effect of nitrogen on yield")
-
-# Part C:
-
-# Create a full two-way ANOVA model
-model <- aov(yield ~ block * N, data = npk)
-
-# Print the ANOVA table
-anova(model)

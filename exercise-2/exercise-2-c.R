@@ -33,8 +33,8 @@ print(thetahat)
 alpha = 0.05
 s = sd(after)
 n = length(after)
-zalpha = qnorm(1 - (alpha/2))
-error = zalpha * (s / sqrt(n))
+talpha = qt(1 - (alpha/2), df=n-1)
+error = talpha * (s / sqrt(n))
 lower = thetahat - error
 upper = thetahat + error
 ci = c(lower, upper)

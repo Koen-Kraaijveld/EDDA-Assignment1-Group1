@@ -35,11 +35,11 @@ plot(fitted(npkaov2), residuals(npkaov2),
 dev.off()
 
 png(file="exercise-4/graphs/exercise-4-d-qqnorm-residuals-m3.png", width=size[1], height=size[2])
-qqnorm(residuals(npkaov2),
+qqnorm(residuals(npkaov3),
        main="Normal Q-Q Plot of the residuals")
 dev.off()
 
 png(file="exercise-4/graphs/exercise-4-d-plot-fitted-m3.png", width=size[1], height=size[2])
-plot(fitted(npkaov2), residuals(npkaov2),
+plot(fitted(npkaov3), residuals(npkaov2),
      main="Scatterplot of the fitted \n values versus residuals")
 dev.off()

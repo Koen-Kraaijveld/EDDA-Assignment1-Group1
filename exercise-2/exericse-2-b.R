@@ -1,10 +1,3 @@
-# we cannot apply the permutation test because the differences between before and after
-# are normal
-
-# the data is paired because the data measures the weight before and after from
-# the same person
-
-
 data = read.table("exercise-2/cholesterol.txt", header=TRUE)
 before = data$Before
 after = data$After8weeks
@@ -12,6 +5,20 @@ after = data$After8weeks
 ttest = t.test(before, after, paired=TRUE, alternative="two.sided")
 print(ttest)
 
-# fix sign test
-sign_test = binom.test(sum((after-before) > 0), length(before), p=0.5)
-print(sign_test)
+wilcoxtest = wilcox.test(before, after, paired=TRUE, alternative="two.sided")
+print(wilcoxtest)
+
+B = 1000
+tstar = numeric(B)
+
+for (i in 1:B) {
+  dietstar= t(apply(cbind(before, after), 1, sample))
+  tstar[i] = mean(dietstar[,1] - dietstar[,2])
+}
+
+t = mean(before - after)
+pl = sum(tstar < t) / B
+pr = sum(tstar > t) / B
+p = 2*min(pl, pr)
+
+print(p)
